@@ -3,9 +3,10 @@ import { StyleSheet, View, Text } from 'react-native';
 
 class BodyText extends React.Component {
   render() {
+    const { props } = this;
     return (
       <View>
-        <Text style={styles.text}>{this.props.children}</Text>
+        <Text style={styles.text}>{props.children}</Text>
       </View>
     );
   }

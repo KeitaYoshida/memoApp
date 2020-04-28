@@ -4,9 +4,20 @@ import { StyleSheet, Text, View } from 'react-native';
 class CircleButton extends React.Component {
   render() {
     const { props } = this;
+    const { style, color } = props;
+    let bgColor = '#E31676';
+    let textColor = '#fff';
+
+    if (color === 'white') {
+      bgColor = '#fff';
+      textColor = '#E31676';
+    }
+
     return (
-      <View style={styles.CircleBotton}>
-        <Text style={styles.CircleBottonTitle}>{props.children}</Text>
+      <View style={[styles.CircleBotton, style, { backgroundColor: bgColor }]}>
+        <Text style={[styles.CircleBottonTitle, { color: textColor }]}>
+          {props.children}
+        </Text>
       </View>
     );
   }

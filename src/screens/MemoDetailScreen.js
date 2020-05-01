@@ -5,6 +5,7 @@ import CircleButton from '../elements/CircleButton';
 
 class MemoDetailScreen extends React.Component {
   render() {
+    const { props } = this;
     return (
       <View style={styles.container}>
         <View>
@@ -20,7 +21,14 @@ class MemoDetailScreen extends React.Component {
           <Text>講座のアイデア</Text>
         </View>
 
-        <CircleButton name="pencil" color="white" style={styles.editButton} />
+        <CircleButton
+          name="pencil"
+          color="white"
+          style={styles.editButton}
+          onPress={() => {
+            props.navigation.navigate('MemoEdit');
+          }}
+        />
       </View>
     );
   }

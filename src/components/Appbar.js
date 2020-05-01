@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.5,
     shadowRadius: 3,
-    zIndex: 10,
   },
   appbarTitle: {
     color: '#fff',

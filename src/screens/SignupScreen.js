@@ -1,22 +1,69 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  TextInput,
-  TouchableHighlight,
-} from 'react-native';
+import { StyleSheet, View, Text, TextInput } from 'react-native';
+import { TouchableHighlight } from 'react-native-gesture-handler';
+import firebase from 'firebase';
 
 class SignupScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+    };
+  }
+
+  // eslint-disable-next-line
+  handleSubmit(navigation) {
+    // navigation.navigate('MemoList');
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .then((user) => {
+        // console.log('success', user);
+        navigation.navigate('MemoList');
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode);
+        console.log(errorMessage);
+        // ...
+      });
+    // log in
+  }
+
   render() {
+    const { props } = this;
     return (
       <View style={styles.container}>
         <Text style={styles.title}>メンバー登録</Text>
-        <TextInput style={styles.input} value="Email Address" />
-        <TextInput style={styles.input} value="Password" />
+        <TextInput
+          style={styles.input}
+          value={this.state.email}
+          onChangeText={(text) => {
+            this.setState({ email: text });
+          }}
+          autoCorrect={false}
+          autoCapitalize="none"
+          placeholder="Email Address"
+        />
+        <TextInput
+          style={styles.input}
+          value={this.state.password}
+          onChangeText={(text) => {
+            this.setState({ password: text });
+          }}
+          autoCorrect={false}
+          autoCapitalize="none"
+          placeholder="Passwordd"
+          secureTextEntry
+        />
         <TouchableHighlight
           style={styles.botton}
-          onPress={() => {}}
+          onPress={() => {
+            this.handleSubmit(props.navigation);
+          }}
           underlayColor="#C70F66"
         >
           <Text style={styles.buttonTitle}>送信する</Text>

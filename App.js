@@ -1,7 +1,7 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
-import firabase from 'firebase';
+import firebase from 'firebase';
 import MemoListScreen from './src/screens/MemoListScreen';
 import MemoDetailScreen from './src/screens/MemoDetailScreen';
 import MemoEditScreen from './src/screens/MemoEditScreen';
@@ -19,7 +19,9 @@ const config = {
   messagingSenderId: ENV.FIREBASE_SENDER_ID,
   appId: ENV.FIREBASE_APP_ID,
 };
-firabase.initializeApp(config);
+if (!firebase.apps.length) {
+  firebase.initializeApp(config);
+}
 
 const App = createStackNavigator(
   {

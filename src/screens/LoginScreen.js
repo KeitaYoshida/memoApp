@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, TextInput } from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
+import firebase from 'firebase';
 
 class LoginScreen extends React.Component {
   constructor(props) {
@@ -13,6 +14,19 @@ class LoginScreen extends React.Component {
 
   // eslint-disable-next-line
   handleSubmit(navigation) {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then(() => {
+        navigation.navigate('MemoList');
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        // ...
+      });
     // navigation.navigate('MemoList');
     // log in
   }

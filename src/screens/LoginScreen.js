@@ -7,8 +7,8 @@ class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
+      email: 'user2@example.com',
+      password: 'password',
     };
   }
 
@@ -18,8 +18,8 @@ class LoginScreen extends React.Component {
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then((user) => {
-        console.log('user: ', user);
-        navigation.navigate('MemoList', { currentUser: user });
+        // console.log('user: ', user);
+        navigation.navigate('MemoList');
       })
       .catch((error) => {
         // Handle Errors here.

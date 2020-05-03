@@ -1,44 +1,36 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 
 class MemoList extends React.Component {
+  renderMemo(memo) {
+    const { props } = this;
+    console.log(memo);
+    return (
+      <TouchableHighlight
+        onPress={() => {
+          props.navigation.navigate('MemoDetail');
+        }}
+      >
+        <View style={styles.memoListItem}>
+          <Text style={styles.memoTitle}>{memo.body}</Text>
+          <Text style={styles.memoDate}>2020</Text>
+        </View>
+      </TouchableHighlight>
+    );
+  }
+
   render() {
     const { props } = this;
+    console.log(props.memoList);
+    if (props.memoList.length === 0) return null;
+
     return (
       <View style={styles.memoList}>
-        <TouchableHighlight
-          onPress={() => {
-            props.navigation.navigate('MemoDetail');
-          }}
-        >
-          <View style={styles.memoListItem}>
-            <Text style={styles.memoTitle}>講座のアイテム</Text>
-            <Text style={styles.memoDate}>2020/01/01</Text>
-          </View>
-        </TouchableHighlight>
-
-        <TouchableHighlight
-          onPress={() => {
-            props.navigation.navigate('MemoDetail');
-          }}
-        >
-          <View style={styles.memoListItem}>
-            <Text style={styles.memoTitle}>講座のアイテム</Text>
-            <Text style={styles.memoDate}>2020/01/01</Text>
-          </View>
-        </TouchableHighlight>
-
-        <TouchableHighlight
-          onPress={() => {
-            props.navigation.navigate('MemoDetail');
-          }}
-        >
-          <View style={styles.memoListItem}>
-            <Text style={styles.memoTitle}>講座のアイテム</Text>
-            <Text style={styles.memoDate}>2020/01/01</Text>
-          </View>
-        </TouchableHighlight>
+        <FlatList
+          data={props.memoList}
+          renderItem={({ item }) => this.renderMemo(item)}
+        />
       </View>
     );
   }

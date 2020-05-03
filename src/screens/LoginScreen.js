@@ -17,8 +17,9 @@ class LoginScreen extends React.Component {
     firebase
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then(() => {
-        navigation.navigate('MemoList');
+      .then((user) => {
+        console.log('user: ', user);
+        navigation.navigate('MemoList', { currentUser: user });
       })
       .catch((error) => {
         // Handle Errors here.

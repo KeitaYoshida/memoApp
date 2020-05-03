@@ -5,6 +5,16 @@ import MemoList from '../components/MemoList';
 import CircleButton from '../elements/CircleButton';
 
 class MemoListScreen extends React.Component {
+  handlePress() {
+    const { params } = this.props.navigation.state;
+    this.props.navigation.navigate('MemoCreate', {
+      currentUser: params.currentUser,
+    });
+    // this.props.navigation.navigate('MemoCreate', {
+    //   currentUser: params.currentUser,
+    // });
+  }
+
   render() {
     const { props } = this;
     return (
@@ -13,7 +23,7 @@ class MemoListScreen extends React.Component {
         <CircleButton
           name="plus"
           onPress={() => {
-            props.navigation.navigate('MemoEdit');
+            this.handlePress();
           }}
         />
       </View>

@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, TextInput } from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import firebase from 'firebase';
+import { StackActions, NavigationActions } from 'react-navigation';
 
 class SignupScreen extends React.Component {
   constructor(props) {
@@ -20,7 +21,11 @@ class SignupScreen extends React.Component {
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((user) => {
         // console.log('success', user);
-        navigation.navigate('MemoList');
+        const resetActions = StackActions.reset({
+          index: 0,
+          actions: [NavigationActions.navigate({ routeName: 'MemoList' })],
+        });
+        navigation.dispatch(resetActions);
       })
       .catch((error) => {
         // Handle Errors here.
@@ -30,6 +35,7 @@ class SignupScreen extends React.Component {
         console.log(errorMessage);
         // ...
       });
+
     // log in
   }
 

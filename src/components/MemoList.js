@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 
+const dateString = (date) => date?.toDate().toISOString(date).split('T')[0];
+
 class MemoList extends React.Component {
   renderMemo(memo) {
     const { props } = this;
@@ -9,12 +11,12 @@ class MemoList extends React.Component {
     return (
       <TouchableHighlight
         onPress={() => {
-          props.navigation.navigate('MemoDetail');
+          props.navigation.navigate('MemoDetail', { memo });
         }}
       >
         <View style={styles.memoListItem}>
-          <Text style={styles.memoTitle}>{memo.body}</Text>
-          <Text style={styles.memoDate}>2020</Text>
+          <Text style={styles.memoTitle}>{memo.body.substring(0, 10)}</Text>
+          <Text style={styles.memoDate}>{dateString(memo.create_on)}</Text>
         </View>
       </TouchableHighlight>
     );

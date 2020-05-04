@@ -23,13 +23,9 @@ class MemoCreateScreen extends React.Component {
         create_on: new Date(),
       })
       .then(() => {
-        // console.log('Document written with ID: ', docRef.id);
         this.props.navigation.goBack();
       })
-      .catch((error) => {
-        console.log('Error adding document: ', error);
-      });
-    // this.props.navigation.goBack();
+      .catch(() => {});
   }
 
   render() {
@@ -40,6 +36,7 @@ class MemoCreateScreen extends React.Component {
           multiline
           value={this.state.body}
           onChangeText={(text) => this.setState({ body: text })}
+          textAlignVertical="top"
         />
 
         <CircleButton

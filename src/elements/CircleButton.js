@@ -58,22 +58,24 @@ class CircleButton extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    width: 48,
-    height: 48,
+    width: 58,
+    height: 58,
     position: 'absolute',
-    bottom: 32,
-    right: 32,
+    bottom: 24,
+    right: 24,
   },
   CircleBotton: {
     width: 48,
     height: 48,
     borderRadius: 50,
+    margin: 8,
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 3,
+    elevation: 3,
   },
   CircleBottonTitle: {
     fontFamily: 'FontAwsome',

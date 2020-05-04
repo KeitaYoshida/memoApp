@@ -11,8 +11,8 @@ class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: 'user2@example.com',
-      password: 'password',
+      email: '',
+      password: '',
     };
   }
 
@@ -24,25 +24,14 @@ class LoginScreen extends React.Component {
     firebase
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then((user) => {
-        // console.log('user: ', user);
-        // navigation.navigate('MemoList');
-
+      .then(() => {
         const resetActions = StackActions.reset({
           index: 0,
           actions: [NavigationActions.navigate({ routeName: 'MemoList' })],
         });
         navigation.dispatch(resetActions);
       })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-        // ...
-      });
-    // navigation.navigate('MemoList');
-    // log in
+      .catch(() => {});
   }
 
   render() {

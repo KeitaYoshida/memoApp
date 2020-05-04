@@ -19,22 +19,14 @@ class SignupScreen extends React.Component {
     firebase
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then((user) => {
-        // console.log('success', user);
+      .then(() => {
         const resetActions = StackActions.reset({
           index: 0,
           actions: [NavigationActions.navigate({ routeName: 'MemoList' })],
         });
         navigation.dispatch(resetActions);
       })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
-        // ...
-      });
+      .catch(() => {});
 
     // log in
   }

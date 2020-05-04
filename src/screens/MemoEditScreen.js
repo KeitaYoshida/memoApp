@@ -15,7 +15,7 @@ class MemoEditScreen extends React.Component {
 
   componentDidMount() {
     const { params } = this.props.navigation.state;
-    this.setState({ body: params.memo.body, key: params.memo.key });
+    this.setState({ body: params?.memo.body, key: params?.memo.key });
   }
 
   handlePress() {
@@ -34,16 +34,14 @@ class MemoEditScreen extends React.Component {
           key: this.state.key,
           created_on: firebase.firestore.Timestamp.now(),
         });
-        console.log('success');
       })
-      .catch((error) => {
-        console.log('error: ', error);
-      });
+      .catch(() => {});
 
     this.props.navigation.goBack();
   }
 
   render() {
+    if (!this.state) return null;
     return (
       <View style={styles.container}>
         <TextInput
@@ -51,6 +49,7 @@ class MemoEditScreen extends React.Component {
           multiline
           value={this.state.body}
           onChangeText={(text) => this.setState({ body: text })}
+          textAlignVertical="top"
         />
 
         <CircleButton

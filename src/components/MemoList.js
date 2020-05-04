@@ -7,7 +7,6 @@ const dateString = (date) => date?.toDate().toISOString(date).split('T')[0];
 class MemoList extends React.Component {
   renderMemo(memo) {
     const { props } = this;
-    console.log(memo);
     return (
       <TouchableHighlight
         onPress={() => {
@@ -24,7 +23,6 @@ class MemoList extends React.Component {
 
   render() {
     const { props } = this;
-    console.log(props.memoList);
     if (props.memoList.length === 0) return null;
 
     return (
